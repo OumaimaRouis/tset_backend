@@ -9,12 +9,10 @@ import requests
 import polyline
 from django.conf import settings
 
-# Create Trip endpoint (POST /api/trips/)
 class TripCreateView(generics.CreateAPIView):
     queryset = Trip.objects.all()
     serializer_class = TripSerializer
 
-# Real route endpoint (GET /api/trips/{id}/route/)
 @api_view(["GET"])
 def get_trip_route(request, pk):
     trip = Trip.objects.get(pk=pk)
@@ -65,7 +63,6 @@ def get_trip_route(request, pk):
         "geometry": coords
     })
 
-# Logs endpoint (GET /api/trips/{id}/logs/)
 @api_view(["GET"])
 def get_trip_logs(request, pk):
     trip = Trip.objects.get(pk=pk)
